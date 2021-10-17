@@ -19,7 +19,8 @@
                     (base64-encode
                      (let ([stream (open-output-bytes)])
                        (send (send d get-bitmap) save-file stream 'png)
-                       (get-output-bytes stream)))
+                       (get-output-bytes stream))
+                     #"")
                     #")")]
                   [else (send d get-text 0 (send d get-count))])
                 out)
