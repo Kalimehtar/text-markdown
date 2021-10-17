@@ -22,7 +22,7 @@
     [(img)
      (define src (assq 'src attrs))
      (when src
-       (define prefix "data:image/png;base64, ")
+       (define prefix "data:image/png;base64,")
        (define l (string-length prefix))
        (define s (cdr src))
        (when (string=? (substring s 0 l) prefix)
