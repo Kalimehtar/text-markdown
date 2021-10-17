@@ -15,7 +15,7 @@
                   [(char? d) d]
                   [(is-a? d image-snip%)
                    (bytes-append
-                    #"![img](data:image/png;base64,"
+                    #"![](data:image/png;base64,"
                     (base64-encode
                      (let ([stream (open-output-bytes)])
                        (send (send d get-bitmap) save-file stream 'png)
