@@ -4,7 +4,8 @@
 (export markdown^)
 
 (define (insert-markdown text string)
-  (map (insert-xexpr text) (parse-markdown string)))
+  (map (insert-xexpr text) (parse-markdown string))
+  (void))
 
 (define ((insert-xexpr text) xexpr)
   (match xexpr
