@@ -3,8 +3,7 @@
 (import)
 (export gui^)
 
-(define (insert-string text string) (send text insert-string string))
-(define (insert-image text bytes) (send text
-                                        insert
+(define (insert-string text string) (send text insert string))
+(define (insert-image text bytes) (send text insert
                                         (make-object image-snip%
                                           (make-object bitmap% (open-input-bytes bytes)))))
