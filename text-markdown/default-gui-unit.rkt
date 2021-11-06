@@ -17,6 +17,7 @@
   (define t (new text% [auto-wrap #t]))
   (define snip (new editor-snip% [editor t] [with-border? #f]))
   (send t insert (make-object image-snip% quote-img))
+  (send t insert " ")
   (inserter t)
   (define str (send t get-text))
   (when (eqv? (string-ref str (sub1 (string-length str))) #\newline)
