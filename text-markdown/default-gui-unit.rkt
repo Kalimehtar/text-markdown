@@ -11,11 +11,12 @@
 
 (define quote-img (text-icon "”"
                              (make-font #:weight 'bold #:family 'decorative)
-                             #:color "red" #:height 16))
+                             #:color "red" #:height 12))
 
 (define (insert-blockquote text inserter)
   (define t (new text% [auto-wrap #t]))
   (define snip (new editor-snip% [editor t] [with-border? #f]))
   (send t insert (make-object image-snip% quote-img))
   (inserter t)
-  (send text insert snip))
+  (send text insert snip)
+  (send text insert "\n"))
