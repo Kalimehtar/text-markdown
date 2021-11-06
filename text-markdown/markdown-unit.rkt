@@ -32,7 +32,18 @@
      (insert-tag text symbol null next)]
     [(? string? s) (insert-string text s)]
     [(? valid-char? c) (insert-string text (string (integer->char c)))]
-    [else (void)]))
+    [(? symbol? c) (insert-string text (make-char c))]
+    [else (insert-string text (format "~a" xexpr))]))
+
+(define (make-char c)
+  (case c
+    [(ndash) "–"]
+    [(mdash) "—"]
+    [(lsquo) "‘"]
+    [(rsquo) "’"]
+    [(ldquo laquo) "«"]
+    [(rdquo raquo) "»"]
+    [else (format "&~a;" c)]))
 
 (define (insert-tag text tag attrs exprs)
   (case tag
@@ -42,4 +53,6 @@
        (define s (cdr src))
        (when (string=? (substring s 0 prefix-length) prefix)
          (insert-image text (base64-decode (string->bytes/utf-8 (substring s prefix-length))))))]
+    [(blockquote) (insert-blockquote text (λ (text) (map (insert-xexpr text) exprs)))]
+    [(p) (map (insert-xexpr text) exprs) (insert-string text "\n")]
     [else (map (insert-xexpr text) exprs)]))
