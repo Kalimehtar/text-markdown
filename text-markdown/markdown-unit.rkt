@@ -20,6 +20,8 @@
          (insert-string text (substring string begin (string-length string))))]
       [else
        (match-define (cons (cons a b) rest) positions)
+       (when (< begin a)
+         (insert-string text (substring string begin a)))
        (insert-image text (base64-decode (string->bytes/utf-8 (substring string (+ a prefix-length*) (- b 1)))))
        (loop b rest)]))
   (void))
@@ -43,6 +45,7 @@
     [(rsquo) "’"]
     [(ldquo laquo) "«"]
     [(rdquo raquo) "»"]
+    [(hellip) "…"]
     [else (format "&~a;" c)]))
 
 (define (insert-tag text tag attrs exprs)
