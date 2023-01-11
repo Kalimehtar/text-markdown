@@ -1,4 +1,4 @@
 #lang setup/infotab
 (define version "0.1")
 (define collection 'multi)
-(define deps '("base" "scribble-lib" "racket-doc" "markdown"))
+(define deps '("base" "scribble-lib" "racket-doc" "markdown" "gui-lib" "images-lib" "wxme-lib"))
